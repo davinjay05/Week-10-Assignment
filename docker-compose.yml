@@ -1,0 +1,16 @@
+services:
+  web:
+    image: nextjs-week10-app:local
+    container_name: nextjs-week10-container
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.local
+    volumes:
+      - db_data:/app/prisma
+    restart: unless-stopped
+
+volumes:
+  db_data:
