@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { AdminAuth } from "@/lib/firebase-admin";
+import { getAdminAuth } from "@/lib/firebase-admin";
 import type { DecodedIdToken } from "firebase-admin/auth";
 
 export async function getSession(): Promise<DecodedIdToken | null> {
@@ -9,7 +9,7 @@ export async function getSession(): Promise<DecodedIdToken | null> {
   if (!session) return null;
 
   try {
-    const decodedToken = await AdminAuth.verifyIdToken(session, true);
+    const decodedToken = await getAdminAuth().verifyIdToken(session, true);
     return decodedToken;
   } catch {
     return null;

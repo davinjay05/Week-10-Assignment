@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic'
 
-import { AdminAuth } from "@/lib/firebase-admin";
+import { getAdminAuth } from "@/lib/firebase-admin";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
   }
 
   const idToken = authorization.split("Bearer ")[1];
-  const decoded = await AdminAuth.verifyIdToken(idToken, true);
+  const decoded = await getAdminAuth().verifyIdToken(idToken, true);
 
   await prisma.user.upsert({
     where: { id: decoded.uid },
