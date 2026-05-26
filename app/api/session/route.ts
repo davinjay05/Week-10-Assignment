@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { AdminAuth } from "@/lib/firebase-admin";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
